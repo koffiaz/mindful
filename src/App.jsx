@@ -1,10 +1,12 @@
 import React, { useState, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Phone, Calendar, HeartHandshake, Shield, MapPin, Mail, Clock, CheckCircle2, Leaf, ExternalLink, Globe } from "lucide-react";
+import {
+  Phone, Calendar, HeartHandshake, Shield, MapPin, Mail, Clock, CheckCircle2, Leaf, ExternalLink, Globe, Menu, X
+} from "lucide-react";
 
 /* ----------------------------------------------------------------
-   Simple EN/ES translations (same as your original project)
+   Simple EN/ES translations
 ------------------------------------------------------------------*/
 const I18nContext = createContext({ lang: "en", setLang: () => {}, t: (k) => k });
 
@@ -19,7 +21,14 @@ const i18n = {
       explore: "Explore Services",
       payers: "Medicaid • Private Pay",
     },
-    common: { call: "Call", bookConsult: "Book a Free Consultation", startIntake: "Start Client Intake", explore: "Explore", contact: "Contact", coverage: "Coverage:", coverageNote: "We accept Medicaid and Private Pay. Talk with us about options and authorizations.", careThatCenters: "Care that centers you", careThatCentersBlurb: "Every person is unique. Our plans are crafted around preferences, culture, and clinical needs. We’re here for the everyday moments—meals, conversations, walks—as much as the important ones." },
+    common: {
+      call: "Call", bookConsult: "Book a Free Consultation", startIntake: "Start Client Intake",
+      explore: "Explore", contact: "Contact", coverage: "Coverage:", coverageNote:
+      "We accept Medicaid and Private Pay. Talk with us about options and authorizations.",
+      careThatCenters: "Care that centers you",
+      careThatCentersBlurb:
+        "Every person is unique. Our plans are crafted around preferences, culture, and clinical needs. We’re here for the everyday moments—meals, conversations, walks—as much as the important ones."
+    },
     sections: { services: "Core Services", values: "Our Core Values" },
     valuesHow: {
       title: "How we live our values",
@@ -29,20 +38,16 @@ const i18n = {
     },
     servicesPage: {
       title: "Services",
-      intro:
-        "Choose the level of support that fits your day—from companionship to 24-hour care. All services are customizable and can be combined.",
+      intro: "Choose the level of support that fits your day—from companionship to 24-hour care. All services are customizable and can be combined.",
     },
     valuesPage: { title: "Our Core Values", intro: "We practice mindfulness in action—grounded in compassion, dignity, and trust." },
     about: {
       title: "About",
-      intro:
-        "We’re a locally owned agency dedicated to elevating home care standards. Our team blends clinical expertise with genuine presence.",
+      intro: "We’re a locally owned agency dedicated to elevating home care standards. Our team blends clinical expertise with genuine presence.",
       mission: "Mission",
-      missionText:
-        "To provide compassionate, reliable home care that supports holistic wellness and independence.",
+      missionText: "To provide compassionate, reliable home care that supports holistic wellness and independence.",
       vision: "Vision",
-      visionText:
-        "A community where aging and healing at home are honored with dignity, mindfulness, and connection.",
+      visionText: "A community where aging and healing at home are honored with dignity, mindfulness, and connection.",
       standards: "Caregiver Standards",
       standardsList: ["Background checks & references", "Ongoing training & supervision", "CPR / First Aid certifications", "Clear communication & reliability"],
     },
@@ -68,14 +73,9 @@ const i18n = {
     intake: {
       title: "Client Intake",
       intro: "Tell us a little about your needs and we’ll follow up the same day.",
-      name: "Full name",
-      phone: "Phone number",
-      email: "Email",
-      needs: "What support do you need?",
-      schedule: "Preferred schedule",
-      submit: "Submit Intake Request",
-      thanksTitle: "Thank you!",
-      thanksBody: "We’ve received your information and will reach out shortly.",
+      name: "Full name", phone: "Phone number", email: "Email",
+      needs: "What support do you need?", schedule: "Preferred schedule",
+      submit: "Submit Intake Request", thanksTitle: "Thank you!", thanksBody: "We’ve received your information and will reach out shortly.",
     },
     contact: {
       title: "Contact",
@@ -83,26 +83,26 @@ const i18n = {
       sameDay: "Same-day consultations available. We’ll listen first, then recommend a plan.",
       form: { name: "Name", email: "Email", message: "Message", send: "Send Message", sentTitle: "Message sent!", sentBody: "Thanks for reaching out—we’ll reply soon." },
     },
-    policy: { privacy: "Privacy Policy", terms: "Terms of Service", placeholder: (title) => `Placeholder legal text. Replace with your official ${title.toLowerCase()} content. This site does not collect or store personal health information; do not submit PHI through forms.`, infoWeCollect: "Information we collect", choices: "Your choices", delete: "You may request deletion of form submissions at any time by contacting us.", bullets: ["Basic contact details you share in forms", "Site usage analytics (aggregate)"] },
+    policy: {
+      privacy: "Privacy Policy", terms: "Terms of Service",
+      placeholder: (title) => `Placeholder legal text. Replace with your official ${title.toLowerCase()} content. This site does not collect or store personal health information; do not submit PHI through forms.`,
+      infoWeCollect: "Information we collect", choices: "Your choices", delete: "You may request deletion of form submissions at any time by contacting us.",
+      bullets: ["Basic contact details you share in forms", "Site usage analytics (aggregate)"],
+    },
     footer: { explore: "Explore", contact: "Contact", rights: (y, name) => `© ${y} ${name}. All rights reserved.`, demo: "Website designed for demo purposes based on marketing flyer content." },
     valuesList: [
-      "Holistic Wellness",
-      "Individualized Care",
-      "Compassion & Empathy",
-      "Integrity & Trust",
-      "Respect & Dignity",
-      "Mindfulness in Action",
-      "Community & Connection",
+      "Holistic Wellness","Individualized Care","Compassion & Empathy","Integrity & Trust",
+      "Respect & Dignity","Mindfulness in Action","Community & Connection",
     ],
     servicesList: [
-      ["Companionship", "Meaningful social interaction, outings, and engagement."],
-      ["Cleaning", "Light housekeeping, laundry, and tidying common areas."],
-      ["Cooking", "Meal prep aligned with preferences and dietary needs."],
-      ["Errands", "Groceries, pharmacy pickups, and appointment accompaniment."],
-      ["Lawn Care", "Basic outdoor upkeep to keep your space welcoming."],
-      ["Respite Care", "Short-term relief so family caregivers can rest."],
-      ["24-Hour Care", "Round-the-clock support for safety and comfort."],
-      ["Transportation", "Safe rides to appointments, community, and family events."],
+      ["Companionship","Meaningful social interaction, outings, and engagement."],
+      ["Cleaning","Light housekeeping, laundry, and tidying common areas."],
+      ["Cooking","Meal prep aligned with preferences and dietary needs."],
+      ["Errands","Groceries, pharmacy pickups, and appointment accompaniment."],
+      ["Lawn Care","Basic outdoor upkeep to keep your space welcoming."],
+      ["Respite Care","Short-term relief so family caregivers can rest."],
+      ["24-Hour Care","Round-the-clock support for safety and comfort."],
+      ["Transportation","Safe rides to appointments, community, and family events."],
     ],
   },
   es: {
@@ -110,12 +110,16 @@ const i18n = {
     hero: {
       accepting: "Aceptamos nuevos clientes",
       entity: "Cuidado de Salud en el Hogar LLC",
-      blurb:
-        "Ofrecemos apoyo confiable en el hogar para que pueda prosperar donde se siente más cómodo. Nuestros cuidadores brindan presencia, habilidad y corazón en cada visita.",
-      explore: "Ver servicios",
-      payers: "Medicaid • Pago privado",
+      blurb: "Ofrecemos apoyo confiable en el hogar para que pueda prosperar donde se siente más cómodo. Nuestros cuidadores brindan presencia, habilidad y corazón en cada visita.",
+      explore: "Ver servicios", payers: "Medicaid • Pago privado",
     },
-    common: { call: "Llamar", bookConsult: "Agenda una consulta gratis", startIntake: "Iniciar admisión", explore: "Explorar", contact: "Contacto", coverage: "Cobertura:", coverageNote: "Aceptamos Medicaid y pago privado. Conversemos sobre opciones y autorizaciones.", careThatCenters: "Cuidado que te centra", careThatCentersBlurb: "Cada persona es única. Creamos planes según preferencias, cultura y necesidades clínicas. Estamos para los momentos cotidianos—comidas, charlas, paseos—y los importantes." },
+    common: {
+      call: "Llamar", bookConsult: "Agenda una consulta gratis", startIntake: "Iniciar admisión",
+      explore: "Explorar", contact: "Contacto", coverage: "Cobertura:",
+      coverageNote: "Aceptamos Medicaid y pago privado. Conversemos sobre opciones y autorizaciones.",
+      careThatCenters: "Cuidado que te centra",
+      careThatCentersBlurb: "Cada persona es única. Creamos planes según preferencias, cultura y necesidades clínicas. Estamos para los momentos cotidianos—comidas, charlas, paseos—y los importantes."
+    },
     sections: { services: "Servicios principales", values: "Nuestros valores" },
     valuesHow: {
       title: "Cómo vivimos nuestros valores",
@@ -128,21 +132,19 @@ const i18n = {
     about: {
       title: "Quiénes somos",
       intro: "Somos una agencia local dedicada a elevar el estándar del cuidado en casa. Nuestro equipo combina experiencia clínica con presencia genuina.",
-      mission: "Misión",
-      missionText: "Brindar cuidado compasivo y confiable que apoye el bienestar integral y la independencia.",
-      vision: "Visión",
-      visionText: "Una comunidad donde envejecer y sanar en casa se honran con dignidad, atención plena y conexión.",
+      mission: "Misión", missionText: "Brindar cuidado compasivo y confiable que apoye el bienestar integral y la independencia.",
+      vision: "Visión", visionText: "Una comunidad donde envejecer y sanar en casa se honran con dignidad, atención plena y conexión.",
       standards: "Estándares del personal",
-      standardsList: ["Antecedentes y referencias", "Capacitación y supervisión continua", "Certificaciones de RCP / Primeros Auxilios", "Comunicación clara y confiabilidad"],
+      standardsList: ["Antecedentes y referencias","Capacitación y supervisión continua","Certificaciones de RCP / Primeros Auxilios","Comunicación clara y confiabilidad"],
     },
     faq: {
       title: "Preguntas frecuentes",
       intro: "Respuestas sobre programación, servicios y pagos.",
       qas: [
-        ["¿Cuándo pueden comenzar los servicios?", "Generalmente dentro de 48–72 horas después de la evaluación y disponibilidad."],
-        ["¿Ofrecen cuidado 24/7?", "Sí—apoyo continuo con cuidadores rotativos."],
-        ["¿Puedo cambiar mi horario?", "Claro. Ajustamos la frecuencia y los horarios contigo."],
-        ["¿Qué opciones de pago hay?", "Aceptamos Medicaid y pago privado; te ayudamos con autorizaciones."],
+        ["¿Cuándo pueden comenzar los servicios?","Generalmente dentro de 48–72 horas después de la evaluación y disponibilidad."],
+        ["¿Ofrecen cuidado 24/7?","Sí—apoyo continuo con cuidadores rotativos."],
+        ["¿Puedo cambiar mi horario?","Claro. Ajustamos la frecuencia y los horarios contigo."],
+        ["¿Qué opciones de pago hay?","Aceptamos Medicaid y pago privado; te ayudamos con autorizaciones."],
       ],
     },
     careers: {
@@ -157,14 +159,9 @@ const i18n = {
     intake: {
       title: "Admisión de cliente",
       intro: "Cuéntanos un poco sobre tus necesidades y te contactaremos el mismo día.",
-      name: "Nombre completo",
-      phone: "Número de teléfono",
-      email: "Correo electrónico",
-      needs: "¿Qué apoyo necesitas?",
-      schedule: "Horario preferido",
-      submit: "Enviar solicitud",
-      thanksTitle: "¡Gracias!",
-      thanksBody: "Hemos recibido tu información y te contactaremos pronto.",
+      name: "Nombre completo", phone: "Número de teléfono", email: "Correo electrónico",
+      needs: "¿Qué apoyo necesitas?", schedule: "Horario preferido",
+      submit: "Enviar solicitud", thanksTitle: "¡Gracias!", thanksBody: "Hemos recibido tu información y te contactaremos pronto.",
     },
     contact: {
       title: "Contacto",
@@ -172,26 +169,26 @@ const i18n = {
       sameDay: "Consultas el mismo día. Primero escuchamos y luego proponemos un plan.",
       form: { name: "Nombre", email: "Correo", message: "Mensaje", send: "Enviar", sentTitle: "¡Mensaje enviado!", sentBody: "Gracias por escribir—responderemos pronto." },
     },
-    policy: { privacy: "Política de privacidad", terms: "Términos del servicio", placeholder: (title) => `Texto legal de ejemplo. Reemplaza con tu ${title.toLowerCase()}. Este sitio no almacena información de salud; no envíes PHI en los formularios.`, infoWeCollect: "Información que recopilamos", choices: "Tus opciones", delete: "Puedes solicitar la eliminación de tus envíos en cualquier momento.", bullets: ["Datos de contacto que compartes en formularios", "Analítica de uso del sitio (agregada)"] },
+    policy: {
+      privacy: "Política de privacidad", terms: "Términos del servicio",
+      placeholder: (title) => `Texto legal de ejemplo. Reemplaza con tu ${title.toLowerCase()}. Este sitio no almacena información de salud; no envíes PHI en los formularios.`,
+      infoWeCollect: "Información que recopilamos", choices: "Tus opciones", delete: "Puedes solicitar la eliminación de tus envíos en cualquier momento.",
+      bullets: ["Datos de contacto que compartes en formularios","Analítica de uso del sitio (agregada)"],
+    },
     footer: { explore: "Explorar", contact: "Contacto", rights: (y, name) => `© ${y} ${name}. Todos los derechos reservados.`, demo: "Sitio de demostración basado en el volante de marketing." },
     valuesList: [
-      "Bienestar holístico",
-      "Atención individualizada",
-      "Compasión y empatía",
-      "Integridad y confianza",
-      "Respeto y dignidad",
-      "Atención plena en acción",
-      "Comunidad y conexión",
+      "Bienestar holístico","Atención individualizada","Compasión y empatía","Integridad y confianza",
+      "Respeto y dignidad","Atención plena en acción","Comunidad y conexión",
     ],
     servicesList: [
-      ["Compañía", "Interacción social, salidas y actividades significativas."],
-      ["Limpieza", "Quehaceres ligeros, lavandería y orden del hogar."],
-      ["Cocina", "Preparación de comidas según preferencias y dietas."],
-      ["Mandados", "Supermercado, farmacia y acompañamiento a citas."],
-      ["Corte de césped", "Mantenimiento básico del exterior."],
-      ["Cuidado de relevo", "Alivio temporal para que la familia descanse."],
-      ["Cuidado 24 horas", "Apoyo continuo para seguridad y comodidad."],
-      ["Transporte", "Traslados seguros a citas y eventos."],
+      ["Compañía","Interacción social, salidas y actividades significativas."],
+      ["Limpieza","Quehaceres ligeros, lavandería y orden del hogar."],
+      ["Cocina","Preparación de comidas según preferencias y dietas."],
+      ["Mandados","Supermercado, farmacia y acompañamiento a citas."],
+      ["Corte de césped","Mantenimiento básico del exterior."],
+      ["Cuidado de relevo","Alivio temporal para que la familia descanse."],
+      ["Cuidado 24 horas","Apoyo continuo para seguridad y comodidad."],
+      ["Transporte","Traslados seguros a citas y eventos."],
     ],
   },
 };
@@ -221,45 +218,132 @@ const Container = ({ children, className = "" }) => (<div className={`mx-auto w-
 const Badge = ({ children }) => (<span className="inline-flex items-center rounded-full border border-yellow-400/60 bg-yellow-50 px-3 py-1 text-xs font-medium tracking-wide text-yellow-900">{children}</span>);
 const CTAButton = ({ to = "/contact", children, icon: Icon = Phone }) => (<Link to={to} className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/10 bg-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md focus:outline-none focus:ring-4 focus:ring-emerald-300"><Icon size={18} aria-hidden="true" /> {children}</Link>);
 const OutlineButton = ({ to = "/services", children }) => (<Link to={to} className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/20 bg-white/70 px-5 py-3 text-sm font-semibold text-emerald-900 shadow-sm transition hover:bg-white focus:outline-none focus:ring-4 focus:ring-emerald-200">{children}</Link>);
-const NavItem = ({ to, children }) => (<NavLink to={to} className={({ isActive }) =>`rounded-xl px-3 py-2 text-sm font-medium transition ${isActive ? "bg-white/70 text-emerald-900" : "text-white/90 hover:text-white"}`}>{children}</NavLink>);
+const NavItem = ({ to, children, onClick }) => (
+  <NavLink
+    to={to}
+    onClick={onClick}
+    className={({ isActive }) =>
+      `rounded-xl px-3 py-2 text-sm font-medium transition ${
+        isActive ? "bg-white/70 text-emerald-900" : "text-emerald-900 hover:bg-white/60"
+      }`
+    }
+  >
+    {children}
+  </NavLink>
+);
 
 /* ----------------------------------------------------------------
-   Header (updated to use /logo.png)
+   Header (desktop + mobile drawer)
 ------------------------------------------------------------------*/
 const Header = () => {
   const { lang, setLang, t } = useT();
+  const [open, setOpen] = useState(false);
+
+  const NavLinks = ({ onClick }) => (
+    <nav className="flex flex-col md:flex-row gap-3 md:gap-1">
+      <NavItem to="/" onClick={onClick}>{t("nav.home")}</NavItem>
+      <NavItem to="/services" onClick={onClick}>{t("nav.services")}</NavItem>
+      <NavItem to="/values" onClick={onClick}>{t("nav.values")}</NavItem>
+      <NavItem to="/about" onClick={onClick}>{t("nav.about")}</NavItem>
+      <NavItem to="/faq" onClick={onClick}>{t("nav.faq")}</NavItem>
+      <NavItem to="/careers" onClick={onClick}>{t("nav.careers")}</NavItem>
+      <NavItem to="/contact" onClick={onClick}>{t("nav.contact")}</NavItem>
+    </nav>
+  );
+
   return (
-    <header className="sticky top-0 z-40 border-b border-emerald-900/10 backdrop-blur supports-[backdrop-filter]:bg-white/30" style={{ background: `#9FB6A299` }}>
+    <header
+      className="sticky top-0 z-40 border-b border-emerald-900/10 backdrop-blur supports-[backdrop-filter]:bg-white/30"
+      style={{ background: `#9FB6A299` }}
+    >
       <Container className="flex items-center justify-between py-3">
+        {/* Logo + brand */}
         <Link to="/" className="flex items-center gap-3">
           <img src="/logo.png" alt="Mindful Living logo" className="h-10 w-auto shrink-0" />
           <div className="leading-tight">
-            <div className="text-sm font-semibold tracking-wide text-emerald-950">{brand.name}</div>
+            <div className="text-sm font-semibold tracking-wide text-emerald-950">Mindful Living</div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-emerald-900/80">{t("hero.entity")}</div>
           </div>
         </Link>
-        <nav className="hidden gap-1 md:flex">
-          <NavItem to="/">{t("nav.home")}</NavItem>
-          <NavItem to="/services">{t("nav.services")}</NavItem>
-          <NavItem to="/values">{t("nav.values")}</NavItem>
-          <NavItem to="/about">{t("nav.about")}</NavItem>
-          <NavItem to="/faq">{t("nav.faq")}</NavItem>
-          <NavItem to="/careers">{t("nav.careers")}</NavItem>
-          <NavItem to="/contact">{t("nav.contact")}</NavItem>
-        </nav>
-        <div className="hidden items-center gap-2 md:flex">
-          <button onClick={() => setLang(lang === "en" ? "es" : "en")} className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/20 bg-white/80 px-3 py-2 text-xs font-semibold text-emerald-900 shadow-sm">
+
+        {/* Desktop actions */}
+        <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:block">
+            <NavLinks />
+          </div>
+          <button
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/20 bg-white/80 px-3 py-2 text-xs font-semibold text-emerald-900 shadow-sm"
+          >
             <Globe size={16} /> {lang === "en" ? "ES" : "EN"}
           </button>
-          <CTAButton icon={Phone} to="/contact">{i18n[lang].common.call} {brand.phone}</CTAButton>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/10 bg-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-4 focus:ring-emerald-300"
+          >
+            <Phone size={18} /> {i18n[lang].common.call} {brand.phone}
+          </Link>
         </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden inline-flex items-center justify-center rounded-xl border border-emerald-900/20 bg-white/80 p-2 text-emerald-900 shadow-sm"
+          aria-label="Open menu"
+          onClick={() => setOpen(true)}
+        >
+          <Menu size={20} />
+        </button>
       </Container>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden fixed inset-0 z-50 bg-black/30" onClick={() => setOpen(false)}>
+          <div
+            className="ml-auto h-full w-80 max-w-[85%] bg-white shadow-xl p-5 flex flex-col gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <img src="/logo.png" alt="Mindful Living" className="h-8 w-auto" />
+                <span className="text-sm font-semibold">Mindful Living</span>
+              </div>
+              <button
+                className="rounded-lg border border-emerald-900/20 p-2 text-emerald-900"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="border-t border-emerald-900/10 pt-4">
+              <NavLinks onClick={() => setOpen(false)} />
+            </div>
+
+            <div className="mt-auto flex items-center gap-3 pt-4 border-t border-emerald-900/10">
+              <button
+                onClick={() => setLang(lang === "en" ? "es" : "en")}
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-xs font-semibold text-emerald-900 shadow-sm"
+              >
+                <Globe size={16} /> {lang === "en" ? "ES" : "EN"}
+              </button>
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-900/10 bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm"
+              >
+                <Phone size={18} /> {i18n[lang].common.call}
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
 
 /* ----------------------------------------------------------------
-   Homepage sections (same as your original)
+   Homepage sections
 ------------------------------------------------------------------*/
 const serviceIcons = [HeartHandshake, Leaf, Leaf, Leaf, Leaf, Shield, Shield, Calendar];
 
@@ -318,7 +402,7 @@ const Hero = () => {
       <Container className="grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <Badge>{t("hero.accepting")}</Badge>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-emerald-950 md:text-5xl">{brand.name}</h1>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight text-emerald-950 md:text-5xl">Mindful Living</h1>
           <p className="mt-2 text-lg tracking-wide text-emerald-900/90">{t("hero.entity")}</p>
           <p className="mt-6 max-w-prose text-emerald-950/90">{t("hero.blurb")}</p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -336,33 +420,31 @@ const Hero = () => {
   );
 };
 
-const HomePage = () => {
-  return (
-    <main>
-      <Hero />
-      <ServicesGrid />
-      <ValuesStripe />
-      <Container className="py-16">
-        <div className="grid items-center gap-8 md:grid-cols-2">
-          <div>
-            <h3 className="text-2xl font-semibold text-emerald-950">{i18n.en.common.careThatCenters}</h3>
-            <p className="mt-2 text-emerald-900/80">{i18n.en.common.careThatCentersBlurb}</p>
-            <div className="mt-6 flex gap-3">
-              <CTAButton to="/contact">{i18n.en.common.call} {brand.phone}</CTAButton>
-              <OutlineButton to="/about">{i18n.en.nav.about}</OutlineButton>
-            </div>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            <Testimonial quote="They treat Mom like family—dependable and kind." author="T. Nguyen" />
-            <Testimonial quote="Responsive, organized, and truly mindful care." author="D. Alvarez" />
-            <Testimonial quote="Compassion shines through in every visit." author="K. Patel" />
-            <Testimonial quote="Scheduling was easy and flexible for our needs." author="M. Johnson" />
+const HomePage = () => (
+  <main>
+    <Hero />
+    <ServicesGrid />
+    <ValuesStripe />
+    <Container className="py-16">
+      <div className="grid items-center gap-8 md:grid-cols-2">
+        <div>
+          <h3 className="text-2xl font-semibold text-emerald-950">{i18n.en.common.careThatCenters}</h3>
+          <p className="mt-2 text-emerald-900/80">{i18n.en.common.careThatCentersBlurb}</p>
+          <div className="mt-6 flex gap-3">
+            <CTAButton to="/contact">{i18n.en.common.call} {brand.phone}</CTAButton>
+            <OutlineButton to="/about">{i18n.en.nav.about}</OutlineButton>
           </div>
         </div>
-      </Container>
-    </main>
-  );
-};
+        <div className="grid gap-4 md:grid-cols-2">
+          <Testimonial quote="They treat Mom like family—dependable and kind." author="T. Nguyen" />
+          <Testimonial quote="Responsive, organized, and truly mindful care." author="D. Alvarez" />
+          <Testimonial quote="Compassion shines through in every visit." author="K. Patel" />
+          <Testimonial quote="Scheduling was easy and flexible for our needs." author="M. Johnson" />
+        </div>
+      </div>
+    </Container>
+  </main>
+);
 
 /* ----------------------------------------------------------------
    Simple pages
