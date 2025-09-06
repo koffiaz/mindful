@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Phone, Calendar, HeartHandshake, Shield, MapPin, Mail, Clock, CheckCircle2, Leaf, ExternalLink, Globe, Menu, X
+  Phone, Calendar, HeartHandshake, Shield, MapPin, Mail, CheckCircle2, Leaf, ExternalLink, Globe, Menu, X
 } from "lucide-react";
 
 /* ----------------------------------------------------------------
@@ -218,13 +218,14 @@ const Container = ({ children, className = "" }) => (<div className={`mx-auto w-
 const Badge = ({ children }) => (<span className="inline-flex items-center rounded-full border border-yellow-400/60 bg-yellow-50 px-3 py-1 text-xs font-medium tracking-wide text-yellow-900">{children}</span>);
 const CTAButton = ({ to = "/contact", children, icon: Icon = Phone }) => (<Link to={to} className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/10 bg-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md focus:outline-none focus:ring-4 focus:ring-emerald-300"><Icon size={18} aria-hidden="true" /> {children}</Link>);
 const OutlineButton = ({ to = "/services", children }) => (<Link to={to} className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/20 bg-white/70 px-5 py-3 text-sm font-semibold text-emerald-900 shadow-sm transition hover:bg-white focus:outline-none focus:ring-4 focus:ring-emerald-200">{children}</Link>);
+
 const NavItem = ({ to, children, onClick }) => (
   <NavLink
     to={to}
     onClick={onClick}
     className={({ isActive }) =>
       `rounded-xl px-3 py-2 text-sm font-medium transition ${
-        isActive ? "bg-white/70 text-emerald-900" : "text-emerald-900 hover:bg-white/60"
+        isActive ? "bg-emerald-50 text-emerald-900" : "text-emerald-900 hover:bg-emerald-50"
       }`
     }
   >
@@ -233,7 +234,7 @@ const NavItem = ({ to, children, onClick }) => (
 );
 
 /* ----------------------------------------------------------------
-   Header (desktop + mobile drawer)
+   Header (SOLID + mobile drawer)
 ------------------------------------------------------------------*/
 const Header = () => {
   const { lang, setLang, t } = useT();
@@ -252,10 +253,7 @@ const Header = () => {
   );
 
   return (
-    <header
-      className="sticky top-0 z-40 border-b border-emerald-900/10 backdrop-blur supports-[backdrop-filter]:bg-white/30"
-      style={{ background: `#9FB6A299` }}
-    >
+    <header className="sticky top-0 z-40 border-b border-emerald-900/10 bg-emerald-100">
       <Container className="flex items-center justify-between py-3">
         {/* Logo + brand */}
         <Link to="/" className="flex items-center gap-3">
@@ -273,7 +271,7 @@ const Header = () => {
           </div>
           <button
             onClick={() => setLang(lang === "en" ? "es" : "en")}
-            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/20 bg-white/80 px-3 py-2 text-xs font-semibold text-emerald-900 shadow-sm"
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-900/20 bg-white px-3 py-2 text-xs font-semibold text-emerald-900 shadow-sm"
           >
             <Globe size={16} /> {lang === "en" ? "ES" : "EN"}
           </button>
@@ -287,7 +285,7 @@ const Header = () => {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden inline-flex items-center justify-center rounded-xl border border-emerald-900/20 bg-white/80 p-2 text-emerald-900 shadow-sm"
+          className="md:hidden inline-flex items-center justify-center rounded-xl border border-emerald-900/20 bg-white p-2 text-emerald-900 shadow-sm"
           aria-label="Open menu"
           onClick={() => setOpen(true)}
         >
@@ -297,9 +295,9 @@ const Header = () => {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="md:hidden fixed inset-0 z-50 bg-black/30" onClick={() => setOpen(false)}>
+        <div className="md:hidden fixed inset-0 z-50 bg-black/60" onClick={() => setOpen(false)}>
           <div
-            className="ml-auto h-full w-80 max-w-[85%] bg-white shadow-xl p-5 flex flex-col gap-4"
+            className="ml-auto h-full w-80 max-w-[85%] bg-white p-5 flex flex-col gap-4 shadow-2xl border-l border-emerald-900/10"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
@@ -316,7 +314,7 @@ const Header = () => {
               </button>
             </div>
 
-            <div className="border-t border-emerald-900/10 pt-4">
+            <div className="border-t border-emerald-900/10 pt-4 bg-white rounded-xl">
               <NavLinks onClick={() => setOpen(false)} />
             </div>
 
