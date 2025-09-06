@@ -93,4 +93,9 @@ export default function App() {
 
         {/* FOOTER */}
         <footer className="bg-emerald-100 border-t border-emerald-200 py-4 text-center text-sm text-emerald-800">
-          © {new Date
+          © {new Date().getFullYear()} {brand.name}. {t("footer.rights")}
+        </footer>
+      </div>
+    </Router>
+  );
+}
